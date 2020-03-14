@@ -1,0 +1,13 @@
+# 1.  Initialise the master node using kubeadm
+kubeadm init
+
+# 2. After running above command, you will get commands to setup your kubectl client and to join other nodes this cluster. 
+Setup kubectl client by run those commands and save cluster join command for later use.
+
+Note for big clusters only : # 3. After setting up kubectl client, install pod network plugin. 
+For this tutorial we will use weave plugin
+
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+check nodes :
+kubectl get node 
