@@ -1,0 +1,22 @@
+# 1. Update the existing packages and install required dependencies
+
+apt-get update && apt-get install -y apt-transport-https
+
+# 2. Add key.
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+# 3. Setup kubernetes repository
+cat <<EOF > /etc/apt/sources.list.d/kubernetes.list  
+deb http://apt.kubernetes.io/ kubernetes-xenial main  
+EOF
+
+# 4. Update repository to fetch kubernetes package
+apt-get update
+
+# 5. Install docker as container runtime
+apt-get install -y docker-ce
+
+# 6. Install kubelet (Kuberenetes node agent), kubeadm, kubectl (client tool to manage kubernetes) 
+      and kubernetes-cni (kubernetes conatiner network interface).
+      
+apt-get install -y kubelet kubeadm kubectl kubernetes-cni=0.6.0-00
